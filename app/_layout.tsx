@@ -3,7 +3,7 @@ import { Appearance, ColorSchemeName, useColorScheme } from "react-native";
 import * as SystemUI from "expo-system-ui";
 
 export default function HomeLayout() {
-  let colorScheme = useColorScheme();
+  const colorScheme = useColorScheme();
   handleBGColorChange(colorScheme);
 
   Appearance.addChangeListener(({ colorScheme }) => {
