@@ -1,6 +1,7 @@
 import * as AppleAuthentication from "expo-apple-authentication";
 import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";
+import { toAppleAuthError } from "../../types/auth";
 
 export async function isAppleAuthAvailable() {
   return await AppleAuthentication.isAvailableAsync();
@@ -38,7 +39,7 @@ export async function useAppleAuth() {
     // Navigate to the home screen.
     router.push("/home");
   } catch (e) {
-    if (e.code === "ERR_REQUEST_CANCELED") {
+    if (toAppleAuthError(e).code === "ERR_REQUEST_CANCELED") {
       // handle that the user canceled the sign-in flow
       console.log("User cancelled Apple sign in.");
     } else {

@@ -6,7 +6,14 @@ type UserContextType = {
   setUser: React.Dispatch<React.SetStateAction<User>>;
 };
 
-const UserContext = createContext<UserContextType | undefined>(undefined);
+const UserContext = createContext<UserContextType>({
+  user: {
+    id: null,
+    email: null,
+    fullName: null,
+  },
+  setUser: () => {},
+});
 
 export const UserProvider = UserContext.Provider;
 export const UserConsumer = UserContext.Consumer;

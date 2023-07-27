@@ -22,7 +22,11 @@ export default function HomeLayout() {
 
   useEffect(() => {
     getUserDetailsFromCredentials().then((res) => {
-      setUser(res);
+      setUser({
+        id: res?.id || null,
+        email: res?.email || null,
+        fullName: res?.fullName || null,
+      });
     });
   }, []);
 

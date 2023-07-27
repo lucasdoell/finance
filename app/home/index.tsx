@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <View className="flex-1 items-center justify-center dark:bg-black">
       <Text className="text-black dark:text-white">
-        Hello {user.fullName.givenName || "user"}
+        Hello {user.fullName?.givenName || "user"}
       </Text>
       <StatusBar style="auto" />
       <Button

@@ -7,26 +7,18 @@ import { getAppleLoginCredential } from "../lib/auth/apple-auth";
 export default function App() {
   useEffect(() => {
     // check if auth is found in Secure Store
-    const isAuthed = getAppleLoginCredential().then((res) => {
+    getAppleLoginCredential().then((res) => {
       if (res === null) {
         console.log("No auth found in Secure Store");
-        return false;
+        setTimeout(() => {
+          router.push("/sign-in");
+        }, 1);
       }
       console.log("Successfully retrieved auth from Secure Store");
-      return true;
-    });
-
-    // if auth is found, push to home
-    if (isAuthed) {
       setTimeout(() => {
         router.push("/home");
       }, 1);
-    }
-
-    // if auth is not found, push to sign-in
-    setTimeout(() => {
-      router.push("/sign-in");
-    }, 1);
+    });
   }, []);
 
   return (
