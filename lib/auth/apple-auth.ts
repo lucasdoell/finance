@@ -58,3 +58,26 @@ export async function logoutApple() {
   console.log("Successfully logged out of Apple.");
   return true;
 }
+
+export async function getUserDetailsFromCredentials() {
+  const credential = await SecureStore.getItemAsync("apple-auth-credential");
+  if (!credential) {
+    return null;
+  }
+
+  const {
+    user,
+    email,
+    fullName,
+  }: {
+    user: string;
+    email: string | null;
+    fullName: AppleAuthentication.AppleAuthenticationFullName;
+  } = JSON.parse(credential);
+
+  return {
+    id: user,
+    email,
+    fullName,
+  };
+}
